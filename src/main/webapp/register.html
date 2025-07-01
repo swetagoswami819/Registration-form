@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSP Page</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Materialize JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body style="background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80');
+ background-size: cover; background-attachment: fixed;">
+
+  <div class="container">
+    <div class="row">
+      <div class="col m6 offset-m3">
+        <div class="card">
+          <div class="card-content">
+            <h4 class="center-align">Register Here!!</h4>
+            <h5 id="msg" class="center-align" ></h5>
+
+            <div class="form center-align">
+              <form action="register" method="post" id="myform">
+                <input type="text" name="user_name" placeholder="Enter user name" required>
+                <input type="password" name="user_password" placeholder="Enter user password" required>
+                <input type="email" name="user_email" placeholder="Enter user email" required>
+
+                <button type="submit" class="btn">Submit</button>
+              </form>
+            </div>
+            
+            <div class="loader center-align" style="margin-top:10px; display:none;">
+            
+            
+       <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    
+    <h5>Please Wait....</h5>
+      </div>
+    </div>
+  </div>
+            
+            
+            
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+  
+  <script>
+  
+    $(document).ready(function(){
+    	console.log("Page is ready");
+    	
+    	$("#myform").on('submit',function(event){
+    		event.preventDefault();
+    		
+    		var f=$(this).serialize();
+    		
+    		console.log(f);
+    		
+    		$(".loader").show();
+    		$(".form").hide();
+    		
+    		$.ajax({
+    			url : "register",
+    			data : f,
+    			type: 'POST',
+    			success : function(data,textStatus,jqXHR){
+    				console.log(data);
+    				console.log("success......");
+    				$(".loader").hide();
+    				$(".form").show();
+    				if(data.trim()==="Done")
+					{
+					 $('#msg').html("Successfully Registered")
+					 $('#msg').addClass('green-text')
+					 
+					}
+				else{
+					$('#msg').html("Something went wrong!")
+					$('#msg').addClass("red-text")
+				}
+    				},
+    				error: function(jqXHR , textStatus , errorThrown){
+    					console.log(data);
+    					console.log("success......");
+    					$(".loader").hide();
+        				$(".form").show();
+        				$('#msg').html("Something went wrong!")
+        				$('#msg').html("Something went wrong!")
+					    $('#msg').addClass("red-text")
+        				
+    					
+    					
+    				}
+    		})
+    		
+    	})
+    });
+  
+  </script>
+</body>
+</html>
