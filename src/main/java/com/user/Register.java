@@ -54,6 +54,7 @@ public class Register extends HttpServlet {
                 pstmt.executeUpdate();
                 
                 //upload file..............
+                //dsdd
                 InputStream is=part.getInputStream();
                 byte []data=new byte[is.available()];
                 
